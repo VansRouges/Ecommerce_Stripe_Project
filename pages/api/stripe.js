@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         billing_address_collection: 'auto',
         shipping_options: [
           { shipping_rate: 'shr_1MnpF1Jzx2XD3pMGlFevXMxK' },
-          { shipping_rate: 'shr_1MnpKNJzx2XD3pMG7XmjnNyd' }
+          // { shipping_rate: 'shr_1MnpKNJzx2XD3pMG7XmjnNyd' }
         ],
         line_items: req.body.map((item) => {
           const img = item.image[0].asset._ref;
