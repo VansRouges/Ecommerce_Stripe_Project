@@ -1,36 +1,49 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
-import { urlFor } from '../lib/client'
-import { Image } from 'next/image';
+import { urlFor } from '../lib/client';
 
-const FooterBanner = ({ footerBanner: { discount, desc, largeText1, largeText2, saleTime, smallText, midText, product, buttonText, image } }) => {
+interface FooterBannerProps {
+  footerBanner: {
+    discount: string;
+    largeText1: string;
+    largeText2: string;
+    saleTime: string;
+    smallText: string;
+    midText: string;
+    desc: string;
+    product: string;
+    buttonText: string;
+    image: string;
+  };
+}
+
+const FooterBanner: React.FC<FooterBannerProps> = ({ footerBanner }) => {
   return (
-    <div className='footer-banner-container'>
-      <div className='banner-desc'>
-        <div className='left'>
-          <p>{discount}</p>
-          <h3>{largeText1}</h3>
-          <h3>{largeText2}</h3>
-          <p>{saleTime}</p>
+    <div className="footer-banner-container">
+      <div className="banner-desc">
+        <div className="left">
+          <p>{footerBanner.discount}</p>
+          <h3>{footerBanner.largeText1}</h3>
+          <h3>{footerBanner.largeText2}</h3>
+          <p>{footerBanner.saleTime}</p>
         </div>
-        <div className='right'>
-          <p>{smallText}</p>
-          <h3>{midText}</h3>
-          <p>{desc}</p>
-          <Link href={`/product/${product}`}>
-            <button type='button'>{buttonText}</button>
+        <div className="right">
+          <p>{footerBanner.smallText}</p>
+          <h3>{footerBanner.midText}</h3>
+          <p>{footerBanner.desc}</p>
+          <Link href={`/product/${footerBanner.product}`}>
+            <button type="button">{footerBanner.buttonText}</button>
           </Link>
         </div>
 
-        <img
-          src={urlFor(image)}
-          className='footer-banner-image'
-          alt=''
+        <img 
+          src={urlFor(footerBanner.image).toString()} 
+          className="footer-banner-image"
         />
       </div>
     </div>
   )
 }
 
-export default FooterBanner
+export default FooterBanner;
